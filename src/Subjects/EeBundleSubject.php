@@ -18,7 +18,7 @@
  * @link      http://www.appserver.io
  */
 
-namespace TechDivision\Import\Product\Variant\Ee\Subjects;
+namespace TechDivision\Import\Product\Bundle\Ee\Subjects;
 
 use TechDivision\Import\Product\Bundle\Subjects\BundleSubject;
 
