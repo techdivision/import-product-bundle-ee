@@ -25,7 +25,8 @@ use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
 use TechDivision\Import\Product\Bundle\Observers\BundleOptionObserver;
 
 /**
- * A SLSB that handles the process to import product bunches.
+ * An observer the provides extended bundle option functionality for the
+ * Magento 2 EE edition.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2016 TechDivision GmbH <info@techdivision.com>

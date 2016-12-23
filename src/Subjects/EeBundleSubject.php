@@ -24,7 +24,8 @@ use TechDivision\Import\Utils\RegistryKeys;
 use TechDivision\Import\Product\Bundle\Subjects\BundleSubject;
 
 /**
- * A SLSB that handles the process to import product variants.
+ * A subject implementation that provides extended functionality for importing
+ * bundles in Magento 2 EE edition.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2016 TechDivision GmbH <info@techdivision.com>
