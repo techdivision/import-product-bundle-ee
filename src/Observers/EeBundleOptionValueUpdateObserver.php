@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver
+ * TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionValueUpdateObserver
  *
  * NOTICE OF LICENSE
  *
@@ -20,10 +20,10 @@
 
 namespace TechDivision\Import\Product\Bundle\Ee\Observers;
 
-use TechDivision\Import\Product\Bundle\Observers\BundleOptionObserver;
+use TechDivision\Import\Product\Bundle\Observers\BundleOptionValueUpdateObserver;
 
 /**
- * Oberserver that provides functionality for the bundle option replace operation for the
+ * Oberserver that provides functionality for the bundle option value add/update operation for the
  * Magento 2 EE edition.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
@@ -32,7 +32,7 @@ use TechDivision\Import\Product\Bundle\Observers\BundleOptionObserver;
  * @link      https://github.com/techdivision/import-product-bundle-ee
  * @link      http://www.techdivision.com
  */
-class EeBundleOptionObserver extends BundleOptionObserver
+class EeBundleOptionValueUpdateObserver extends BundleOptionValueUpdateObserver
 {
 
     /**
