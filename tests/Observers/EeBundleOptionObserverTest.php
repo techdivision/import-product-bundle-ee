@@ -87,7 +87,7 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
             EntityStatus::MEMBER_NAME => EntityStatus::STATUS_CREATE,
             MemberNames::PARENT_ID    => $parentId = 1000,
             MemberNames::REQUIRED     => $bundleValueRequired,
-            MemberNames::POSITION     => $position = 1,
+            MemberNames::POSITION     => 1,
             MemberNames::TYPE         => $bundleValueType
         );
 
