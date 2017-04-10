@@ -46,10 +46,12 @@ class EeBundleSubject extends BundleSubject
     /**
      * Intializes the previously loaded global data for exactly one variants.
      *
+     * @param string $serial The serial of the actual import
+     *
      * @return void
      * @see \Importer\Csv\Actions\ProductImportAction::prepare()
      */
-    public function setUp()
+    public function setUp($serial)
     {
 
         // load the entity manager and the registry processor
@@ -62,7 +64,7 @@ class EeBundleSubject extends BundleSubject
         $this->skuRowIdMapping = $status[RegistryKeys::SKU_ROW_ID_MAPPING];
 
         // prepare the callbacks
-        parent::setUp();
+        parent::setUp($serial);
     }
 
     /**
