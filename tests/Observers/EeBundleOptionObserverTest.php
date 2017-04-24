@@ -23,6 +23,7 @@ namespace TechDivision\Import\Product\Bundle\Ee\Observers;
 use TechDivision\Import\Utils\EntityStatus;
 use TechDivision\Import\Utils\StoreViewCodes;
 use TechDivision\Import\Product\Bundle\Utils\MemberNames;
+use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
 
 /**
  * Test class for the EE bundle option observer implementation.
@@ -92,26 +93,28 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
         );
 
         // create a persist processor mock instance
-        $mockSubject = $this->getMock('TechDivision\Import\Product\Bundle\Ee\Subjects\EeBundleSubject');
-        $mockSubject->expects($this->once())
-                    ->method('mapSkuToRowId')
-                    ->with($sku)
-                    ->willReturn($parentId);
+        $mockSubject = $this->getMockBuilder('TechDivision\Import\Product\Bundle\Ee\Subjects\EeBundleSubject')
+                            ->disableOriginalConstructor()
+                            ->setMethods(
+                                array(
+                                    'mapSkuToRowId',
+                                    'getHeader',
+                                    'getHeaders',
+                                    'hasHeaders',
+                                    'getStoreViewCode'
+                                )
+                            )
+                            ->getMock();
         $mockSubject->expects($this->any())
                     ->method('getHeaders')
                     ->willReturn($headers);
-        $mockSubject->expects($this->once())
-                    ->method('getStoreViewCode')
-                    ->with(StoreViewCodes::ADMIN)
-                    ->willReturn(StoreViewCodes::ADMIN);
-        $mockSubject->expects($this->once())
-                    ->method('exists')
-                    ->with($bundleValueName)
-                    ->willReturn(false);
-        $mockSubject->expects($this->once())
-                    ->method('persistProductBundleOption')
-                    ->with($productBundleOption)
-                    ->willReturn(null);
+        $mockSubject->expects($this->any())
+                    ->method('hasHeader')
+                    ->willReturnOnConsecutiveCalls(true);
+        $mockSubject->expects($this->any())
+                    ->method('getHeader')
+                    ->with(array(ColumnKeys::BUNDLE_VALUE_NAME))
+                    ->willReturnOnConsecutiveCalls($bundleValueName);
 
         // create a mock for the EE bundle option observer
         $mockObserver = $this->getMockBuilder('TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver')
