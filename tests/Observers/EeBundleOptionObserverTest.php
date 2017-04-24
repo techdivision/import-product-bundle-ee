@@ -21,7 +21,6 @@
 namespace TechDivision\Import\Product\Bundle\Ee\Observers;
 
 use TechDivision\Import\Utils\EntityStatus;
-use TechDivision\Import\Utils\StoreViewCodes;
 use TechDivision\Import\Product\Bundle\Utils\MemberNames;
 use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
 
