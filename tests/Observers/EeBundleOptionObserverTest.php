@@ -100,13 +100,17 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
                                     'getHeader',
                                     'getHeaders',
                                     'hasHeaders',
-                                    'getStoreViewCode'
+                                    'getStoreViewCode',
+                                    'getRow'
                                 )
                             )
                             ->getMock();
         $mockSubject->expects($this->any())
                     ->method('getHeaders')
                     ->willReturn($headers);
+        $mockSubject->expects($this->any())
+                    ->method('getRow')
+                    ->willReturn($row);
         $mockSubject->expects($this->any())
                     ->method('hasHeader')
                     ->willReturnOnConsecutiveCalls(true);
@@ -124,6 +128,6 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
                     ->willReturn($mockSubject);
 
         // test the handle() method
-        $this->assertSame($row, $mockObserver->handle($row));
+        $this->assertSame($row, $mockObserver->handle($mockSubject));
     }
 }
