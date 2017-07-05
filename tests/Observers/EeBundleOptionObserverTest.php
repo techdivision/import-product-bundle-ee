@@ -121,6 +121,7 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
 
         // create a mock for the EE bundle option observer
         $mockObserver = $this->getMockBuilder('TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver')
+                             ->disableOriginalConstructor()
                              ->setMethods(array('getSubject'))
                              ->getMock();
         $mockObserver->expects($this->any())
