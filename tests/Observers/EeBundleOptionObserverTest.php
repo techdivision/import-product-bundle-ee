@@ -20,8 +20,6 @@
 
 namespace TechDivision\Import\Product\Bundle\Ee\Observers;
 
-use TechDivision\Import\Utils\EntityStatus;
-use TechDivision\Import\Product\Bundle\Utils\MemberNames;
 use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
 
 /**
@@ -65,7 +63,7 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
 
         // initialize a data row
         $row = array(
-            0  => $sku = '24-WG080',
+            0  => '24-WG080',
             1  => null,
             2  => 'dynamic',
             3  => 'dynamic',
@@ -73,22 +71,13 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
             5  => 'dynamic',
             6  => null,
             7  => $bundleValueName = 'Sprite Stasis Ball',
-            8  => $bundleValueType = 'radio',
-            9  => $bundleValueRequired = 1,
+            8  => 'radio',
+            9  => 1,
             10 => '24-WG081-blue',
             11 => 0.0000,
             12 => 1,
             13 => 1.0000,
             14 => 'fixed'
-        );
-
-        // initialize the product bundle option to be persisted
-        $productBundleOption = array(
-            EntityStatus::MEMBER_NAME => EntityStatus::STATUS_CREATE,
-            MemberNames::PARENT_ID    => $parentId = 1000,
-            MemberNames::REQUIRED     => $bundleValueRequired,
-            MemberNames::POSITION     => 1,
-            MemberNames::TYPE         => $bundleValueType
         );
 
         // create a persist processor mock instance
