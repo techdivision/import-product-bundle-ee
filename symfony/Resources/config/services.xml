@@ -5,13 +5,63 @@
 
     <services>
 
+        <service id="import_product_bundle.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository"/>
+        <service id="import_product_bundle_ee.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository"/>
+
+        <service id="import_product_bundle_ee.action.processor.sequence.product.bundle.option.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\SequenceProductBundleOptionCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
+        </service>
+        <service id="import_product_bundle_ee.action.processor.sequence.product.bundle.selection.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\SequenceProductBundleSelectionCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
+        </service>
+
+        <service id="import_product_bundle_ee.action.sequence.product.bundle.option" class="TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleOptionAction">
+            <argument type="service" id="import_product_bundle_ee.action.processor.sequence.product.bundle.option.create"/>
+        </service>
+        <service id="import_product_bundle_ee.action.sequence.product.bundle.selection" class="TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleSelectionAction">
+            <argument type="service" id="import_product_bundle_ee.action.processor.sequence.product.bundle.selection.create"/>
+        </service>
+
+        <!--  
+         ! ATTENTION: We're overriding the actions from the techdivision/import-product-bundle here 
+         !-->
+        <service id="import_product_bundle.action.processor.product.bundle.option.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\ProductBundleOptionCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
+        </service>
+        <service id="import_product_bundle.action.processor.product.bundle.selection.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\ProductBundleSelectionCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
+        </service>
+
         <service id="import_product_bundle_ee.observer.bundle.option" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
+            <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.option"/>
         </service>
         <service id="import_product_bundle_ee.observer.bundle.option.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionUpdateObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
+            <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.option"/>
+        </service>
+        <service id="import_product_bundle_ee.observer.bundle.selection" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleSelectionObserver">
+            <argument type="service" id="import_product_bundle.processor.product.bundle"/>
+            <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.selection"/>
+        </service>
+        <service id="import_product_bundle_ee.observer.bundle.selection.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleSelectionUpdateObserver">
+            <argument type="service" id="import_product_bundle.processor.product.bundle"/>
+            <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.selection"/>
+        </service>
+        <service id="import_product_bundle_ee.observer.bundle.option.value" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionValueObserver">
+            <argument type="service" id="import_product_bundle.processor.product.bundle"/>
         </service>
         <service id="import_product_bundle_ee.observer.bundle.option.value.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionValueUpdateObserver">
+            <argument type="service" id="import_product_bundle.processor.product.bundle"/>
+        </service>
+        <service id="import_product_bundle_ee.observer.bundle.product.relation" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleProductRelationObserver">
+            <argument type="service" id="import_product_bundle.processor.product.bundle"/>
+        </service>
+        <service id="import_product_bundle_ee.observer.bundle.product.relation.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleProductRelationUpdateObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
         </service>
 
