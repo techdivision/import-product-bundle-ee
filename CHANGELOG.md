@@ -1,3 +1,13 @@
+# Version 8.0.1
+
+## Bugfixes
+
+* Fixed some formatting issues
+
+## Features
+
+* None
+
 # Version 8.0.0
 
 ## Bugfixes
