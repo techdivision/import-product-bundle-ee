@@ -1,3 +1,13 @@
+# Version 13.0.1
+
+## Bugfixes
+
+* Fixed PHPUnit tests
+
+## Features
+
+* None
+
 # Version 13.0.0
 
 ## Bugfixes
