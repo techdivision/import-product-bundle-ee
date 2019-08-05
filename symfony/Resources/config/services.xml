@@ -64,6 +64,55 @@
         <service id="import_product_bundle_ee.observer.bundle.product.relation.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleProductRelationUpdateObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
         </service>
+        <service id="import_product_bundle_ee.observer.sku.row.id.mapping" class="TechDivision\Import\Product\Ee\Observers\GenericSkuRowIdMappingObserver">
+            <argument type="service" id="import_product_ee.processor.product.bunch"/>
+            <argument type="string">%import_product_bundle.param.sku.column.name%</argument>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the replace operation.
+         |-->
+        <service id="import_product_bundle_ee.observer.composite.replace" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.option" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.option.value" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.selection" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle.observer.bundle.selection.price" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.product.relation" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the add-update operation.
+         |-->
+        <service id="import_product_bundle_ee.observer.composite.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.sku.row.id.mapping" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.option.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.option.value.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.selection.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle.observer.bundle.selection.price.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.bundle.product.relation.update" type="service"/>
+            </call>
+        </service>
 
         <service id="import_product_bundle_ee.subject.bundle" class="TechDivision\Import\Product\Bundle\Ee\Subjects\EeBundleSubject" shared="false">
             <argument type="service" id="import.processor.registry"/>
