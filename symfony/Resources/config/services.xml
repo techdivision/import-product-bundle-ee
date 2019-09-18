@@ -5,8 +5,12 @@
 
     <services>
 
-        <service id="import_product_bundle.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository"/>
-        <service id="import_product_bundle_ee.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository"/>
+        <service id="import_product_bundle.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository">
+            <argument type="service" id="import.util.sql.compilers"/>
+        </service>
+        <service id="import_product_bundle_ee.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository">
+            <argument type="service" id="import.util.sql.compilers"/>
+        </service>
 
         <service id="import_product_bundle_ee.action.processor.sequence.product.bundle.option.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\SequenceProductBundleOptionCreateProcessor">
             <argument type="service" id="connection"/>

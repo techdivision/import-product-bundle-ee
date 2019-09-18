@@ -41,12 +41,12 @@ class SqlStatementRepository extends \TechDivision\Import\Product\Bundle\Reposit
      */
     private $statements = array(
         SqlStatementKeys::CREATE_SEQUENCE_PRODUCT_BUNDLE_OPTION =>
-            'INSERT INTO sequence_product_bundle_option VALUES ()',
+            'INSERT INTO ${table:sequence_product_bundle_option} VALUES ()',
         SqlStatementKeys::CREATE_SEQUENCE_PRODUCT_BUNDLE_SELECTION =>
-            'INSERT INTO sequence_product_bundle_selection VALUES ()',
+            'INSERT INTO ${table:sequence_product_bundle_selection} VALUES ()',
         SqlStatementKeys::CREATE_PRODUCT_BUNDLE_OPTION =>
             'INSERT
-               INTO catalog_product_bundle_option
+               INTO ${table:catalog_product_bundle_option}
                     (option_id,
                      parent_id,
                      required,
@@ -59,7 +59,7 @@ class SqlStatementRepository extends \TechDivision\Import\Product\Bundle\Reposit
                      :type)',
         SqlStatementKeys::CREATE_PRODUCT_BUNDLE_SELECTION =>
             'INSERT
-               INTO catalog_product_bundle_selection
+               INTO ${table:catalog_product_bundle_selection}
                     (selection_id,
                      option_id,
                      parent_product_id,
@@ -83,17 +83,17 @@ class SqlStatementRepository extends \TechDivision\Import\Product\Bundle\Reposit
     );
 
     /**
-     * Initialize the the SQL statements.
+     * Initializes the SQL statement repository with the primary key and table prefix utility.
+     *
+     * @param \IteratorAggregate<\TechDivision\Import\Utils\SqlCompilerInterface> $compilers The array with the compiler instances
      */
-    public function __construct()
+    public function __construct(\IteratorAggregate $compilers)
     {
 
-        // call the parent constructor
-        parent::__construct();
+        // pass primary key + table prefix utility to parent instance
+        parent::__construct($compilers);
 
-        // merge the class statements
-        foreach ($this->statements as $key => $statement) {
-            $this->preparedStatements[$key] = $statement;
-        }
+        // compile the SQL statements
+        $this->compile($this->statements);
     }
 }
