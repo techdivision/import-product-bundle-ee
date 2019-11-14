@@ -39,18 +39,19 @@ class SequenceProductBundleOptionAction extends AbstractAction implements Sequen
      * Helper method that create/update the passed entity, depending on
      * the entity's status.
      *
-     * @param array $row The entity data to create/update
+     * @param array       $row  The entity data to create/update
+     * @param string|null $name The name of the prepared statement that has to be executed
      *
      * @return string The last inserted ID
      */
-    public function persist(array $row)
+    public function persist(array $row, $name = null)
     {
 
         // load the method name
         $methodName = $row[EntityStatus::MEMBER_NAME];
 
         // invoke the method
-        return $this->$methodName($row);
+        return $this->$methodName($row, $name);
     }
 
     /**
@@ -61,7 +62,7 @@ class SequenceProductBundleOptionAction extends AbstractAction implements Sequen
      *
      * @return string The last inserted ID
      */
-    public function create($row, $name = null)
+    public function create(array $row, $name = null)
     {
         return $this->getCreateProcessor()->execute($row, $name);
     }
