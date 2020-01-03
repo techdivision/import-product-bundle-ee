@@ -20,6 +20,7 @@
 
 namespace TechDivision\Import\Product\Bundle\Ee\Observers;
 
+use PHPUnit\Framework\TestCase;
 use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
 
 /**
@@ -31,7 +32,7 @@ use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
  * @link      https://github.com/techdivision/import-product-bundle-ee
  * @link      http://www.techdivision.com
  */
-class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
+class EeBundleOptionObserverTest extends TestCase
 {
 
     /**
