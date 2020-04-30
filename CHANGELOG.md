@@ -1,3 +1,13 @@
+# Version 21.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-product-ee und techdivision/import-product-bundle versions as dependency
+
 # Version 20.0.1
 
 ## Bugfixes
