@@ -6,7 +6,7 @@
 
 ## Features
 
-* Switch to latest techdivision/import-product-ee und techdivision/import-product-bundle versions as dependency
+* Switch to latest techdivision/import-product-ee 20.* and techdivision/import-product-bundle 20.* version as dependency
 
 # Version 20.0.1
 
