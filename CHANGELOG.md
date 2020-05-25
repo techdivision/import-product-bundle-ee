@@ -1,3 +1,14 @@
+# Version 23.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add #PAC-47
+* Switch to latest techdivision/import-product-ee 22.* and techdivision/import-product-bundle 22.* version as dependency
+
 # Version 22.0.0
 
 ## Bugfixes
