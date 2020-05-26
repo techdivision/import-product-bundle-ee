@@ -128,11 +128,18 @@ class RoboFile extends \Robo\Tasks
     public function runCpd()
     {
 
+        // prepare the patterns for the files that has to be ignored
+        $ignore = array(
+            'EeBundleSelectionUpdateObserver',
+            'Observers/EeBundleOptionObserver'
+        );
+
         // run the copy past detector
         return $this->_exec(
             sprintf(
-                '%s/bin/phpcpd %s --log-pmd %s/reports/pmd-cpd.xml',
+                '%s/bin/phpcpd --regexps-exclude %s %s --log-pmd %s/reports/pmd-cpd.xml',
                 $this->properties['vendor.dir'],
+                implode(',', $ignore),
                 $this->properties['src.dir'],
                 $this->properties['target.dir']
             )

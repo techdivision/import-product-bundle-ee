@@ -44,42 +44,16 @@ class SqlStatementRepository extends \TechDivision\Import\Product\Bundle\Reposit
             'INSERT INTO ${table:sequence_product_bundle_option} VALUES ()',
         SqlStatementKeys::CREATE_SEQUENCE_PRODUCT_BUNDLE_SELECTION =>
             'INSERT INTO ${table:sequence_product_bundle_selection} VALUES ()',
-        SqlStatementKeys::CREATE_PRODUCT_BUNDLE_OPTION =>
-            'INSERT
-               INTO ${table:catalog_product_bundle_option}
-                    (option_id,
-                     parent_id,
-                     required,
-                     position,
-                     type)
-             VALUES (:option_id,
-                     :parent_id,
-                     :required,
-                     :position,
-                     :type)',
-        SqlStatementKeys::CREATE_PRODUCT_BUNDLE_SELECTION =>
-            'INSERT
-               INTO ${table:catalog_product_bundle_selection}
-                    (selection_id,
-                     option_id,
-                     parent_product_id,
-                     product_id,
-                     position,
-                     is_default,
-                     selection_price_type,
-                     selection_price_value,
-                     selection_qty,
-                     selection_can_change_qty)
-             VALUES (:selection_id,
-                     :option_id,
-                     :parent_product_id,
-                     :product_id,
-                     :position,
-                     :is_default,
-                     :selection_price_type,
-                     :selection_price_value,
-                     :selection_qty,
-                     :selection_can_change_qty)'
+        SqlStatementKeys::UPDATE_PRODUCT_BUNDLE_OPTION =>
+            'UPDATE ${table:catalog_product_bundle_option}
+                SET ${column-values:catalog_product_bundle_option}
+              WHERE option_id = :option_id
+                AND parent_id = :parent_id',
+        SqlStatementKeys::UPDATE_PRODUCT_BUNDLE_SELECTION =>
+            'UPDATE ${table:catalog_product_bundle_selection}
+                SET ${column-values:catalog_product_bundle_selection}
+              WHERE selection_id = :selection_id
+                AND parent_product_id = :parent_product_id',
     );
 
     /**
