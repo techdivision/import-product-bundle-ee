@@ -6,10 +6,10 @@
     <services>
 
         <service id="import_product_bundle.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository">
-            <argument type="service" id="import_product_bundle.util.sql.compilers"/>
+            <argument type="service" id="import.util.sql.compilers"/>
         </service>
         <service id="import_product_bundle_ee.repository.sql.statement" class="TechDivision\Import\Product\Bundle\Ee\Repositories\SqlStatementRepository">
-            <argument type="service" id="import_product_bundle.util.sql.compilers"/>
+            <argument type="service" id="import.util.sql.compilers"/>
         </service>
 
         <service id="import_product_bundle_ee.action.processor.sequence.product.bundle.option.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\SequenceProductBundleOptionCreateProcessor">
@@ -34,31 +34,37 @@
         <service id="import_product_bundle.action.processor.product.bundle.option.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\ProductBundleOptionCreateProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
         </service>
         <service id="import_product_bundle.action.processor.product.bundle.selection.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\ProductBundleSelectionCreateProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
         </service>
 
         <service id="import_product_bundle_ee.observer.bundle.option" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
             <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.option"/>
             <argument type="service" id="import.observer.dynamic.attribute.loader"/>
+            <argument type="service" id="import_product_bundle.entity.merger.composite.option"/>
         </service>
         <service id="import_product_bundle_ee.observer.bundle.option.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionUpdateObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
             <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.option"/>
             <argument type="service" id="import.observer.dynamic.attribute.loader"/>
+            <argument type="service" id="import_product_bundle.entity.merger.composite.option"/>
         </service>
         <service id="import_product_bundle_ee.observer.bundle.selection" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleSelectionObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
             <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.selection"/>
             <argument type="service" id="import.observer.dynamic.attribute.loader"/>
+            <argument type="service" id="import_product_bundle.entity.merger.composite.selection"/>
         </service>
         <service id="import_product_bundle_ee.observer.bundle.selection.update" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleSelectionUpdateObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
             <argument type="service" id="import_product_bundle_ee.action.sequence.product.bundle.selection"/>
             <argument type="service" id="import.observer.dynamic.attribute.loader"/>
+            <argument type="service" id="import_product_bundle.entity.merger.composite.selection"/>
         </service>
         <service id="import_product_bundle_ee.observer.bundle.option.value" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionValueObserver">
             <argument type="service" id="import_product_bundle.processor.product.bundle"/>
