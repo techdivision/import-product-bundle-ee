@@ -6,7 +6,7 @@
 
 ## Features
 
-* Switch to latest techdivision/import-product-bundle 23.* version as dependency
+* Switch to latest  techdivision/import-product-ee 24.* and techdivision/import-product-bundle 23.* version as dependency
 
 # Version 24.0.0
 
