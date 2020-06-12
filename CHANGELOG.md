@@ -1,3 +1,13 @@
+# Version 25.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-product-bundle 23.* version as dependency
+
 # Version 24.0.0
 
 ## Bugfixes
