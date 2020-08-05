@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver
+ * TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleSelectionUpdateObserver
  *
  * NOTICE OF LICENSE
  *
@@ -25,12 +25,12 @@ use TechDivision\Import\Observers\StateDetectorInterface;
 use TechDivision\Import\Observers\AttributeLoaderInterface;
 use TechDivision\Import\Observers\EntityMergers\EntityMergerInterface;
 use TechDivision\Import\Product\Bundle\Utils\MemberNames;
-use TechDivision\Import\Product\Bundle\Observers\BundleOptionObserver;
+use TechDivision\Import\Product\Bundle\Observers\BundleSelectionUpdateObserver;
 use TechDivision\Import\Product\Bundle\Services\ProductBundleProcessorInterface;
-use TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleOptionActionInterface;
+use TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleSelectionActionInterface;
 
 /**
- * Oberserver that provides functionality for the bundle option replace operation for the
+ * Oberserver that provides functionality for the bundle selection add/update operation for the
  * Magento 2 EE edition.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
@@ -39,28 +39,28 @@ use TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleOptionAct
  * @link      https://github.com/techdivision/import-product-bundle-ee
  * @link      http://www.techdivision.com
  */
-class EeBundleOptionObserver extends BundleOptionObserver
+class EeBundleSelectionUpdateObserver extends BundleSelectionUpdateObserver
 {
 
     /**
-     * The sequence product bundle option action instance.
+     * The sequence product bundle selection action instance.
      *
-     * @var \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleOptionActionInterface
+     * @var \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleSelectionActionInterface
      */
-    protected $sequenceProductBundleOptionAction;
+    protected $sequenceProductBundleSelectionAction;
 
     /**
      * Initialize the observer with the passed product bundle processor instance.
      *
-     * @param \TechDivision\Import\Product\Bundle\Services\ProductBundleProcessorInterface              $productBundleProcessor            The product bundle processor instance
-     * @param \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleOptionActionInterface $sequenceProductBundleOptionAction The action instance
-     * @param \TechDivision\Import\Observers\AttributeLoaderInterface|null                              $attributeLoader                   The attribute loader instance
-     * @param \TechDivision\Import\Observers\EntityMergers\EntityMergerInterface                        $entityMerger                      The entity merger instance
-     * @param \TechDivision\Import\Observers\StateDetectorInterface|null                                $stateDetector                     The state detector instance
+     * @param \TechDivision\Import\Product\Bundle\Services\ProductBundleProcessorInterface                 $productBundleProcessor               The product bundle processor instance
+     * @param \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleSelectionActionInterface $sequenceProductBundleSelectionAction The action instance
+     * @param \TechDivision\Import\Observers\AttributeLoaderInterface|null                                 $attributeLoader                      The attribute loader instance
+     * @param \TechDivision\Import\Observers\EntityMergers\EntityMergerInterface                           $entityMerger                         The entity merger instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface|null                                   $stateDetector                        The state detector instance
      */
     public function __construct(
         ProductBundleProcessorInterface $productBundleProcessor,
-        SequenceProductBundleOptionActionInterface $sequenceProductBundleOptionAction,
+        SequenceProductBundleSelectionActionInterface $sequenceProductBundleSelectionAction,
         AttributeLoaderInterface $attributeLoader = null,
         EntityMergerInterface $entityMerger = null,
         StateDetectorInterface $stateDetector = null
@@ -69,8 +69,8 @@ class EeBundleOptionObserver extends BundleOptionObserver
         // initialize the parent instance
         parent::__construct($productBundleProcessor, $attributeLoader, $entityMerger, $stateDetector);
 
-        // set the passed sequence product bundle option action instance
-        $this->sequenceProductBundleOptionAction = $sequenceProductBundleOptionAction;
+        // set the passed sequence product bundle selection action instance
+        $this->sequenceProductBundleSelectionAction = $sequenceProductBundleSelectionAction;
     }
 
     /**
@@ -84,9 +84,9 @@ class EeBundleOptionObserver extends BundleOptionObserver
         // prepare the attributes
         $attr = parent::prepareAttributes();
 
-        // query whether or not, we found a new product bundle option
+        // query whether or not, we found a new product bundle selection
         if ($attr[EntityStatus::MEMBER_NAME] === EntityStatus::STATUS_CREATE) {
-            $attr[MemberNames::OPTION_ID] = $this->nextIdentifier();
+            $attr[MemberNames::SELECTION_ID] = $this->nextIdentifier();
         }
 
         // return the attributes
@@ -94,13 +94,13 @@ class EeBundleOptionObserver extends BundleOptionObserver
     }
 
     /**
-     * Returns the sequence product bundle option action instance.
+     * Returns the sequence product bundle selection action instance.
      *
-     * @return \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleOptionActionInterface The action instance
+     * @return \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleSelectionActionInterface The action instance
      */
-    protected function getSequenceProductBundleOptionAction()
+    protected function getSequenceProductBundleSelectionAction()
     {
-        return $this->sequenceProductBundleOptionAction;
+        return $this->sequenceProductBundleSelectionAction;
     }
 
     /**
@@ -110,7 +110,7 @@ class EeBundleOptionObserver extends BundleOptionObserver
      */
     protected function nextIdentifier()
     {
-        return $this->getSequenceProductBundleOptionAction()->nextIdentifier();
+        return $this->getSequenceProductBundleSelectionAction()->nextIdentifier();
     }
 
     /**

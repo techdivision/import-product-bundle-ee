@@ -20,6 +20,7 @@
 
 namespace TechDivision\Import\Product\Bundle\Ee\Observers;
 
+use PHPUnit\Framework\TestCase;
 use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
 
 /**
@@ -31,7 +32,7 @@ use TechDivision\Import\Product\Bundle\Utils\ColumnKeys;
  * @link      https://github.com/techdivision/import-product-bundle-ee
  * @link      http://www.techdivision.com
  */
-class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
+class EeBundleOptionObserverTest extends TestCase
 {
 
     /**
@@ -64,7 +65,7 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
         // initialize a data row
         $row = array(
             0  => '24-WG080',
-            1  => null,
+            1  => $storeViewCode = null,
             2  => 'dynamic',
             3  => 'dynamic',
             4  => 'Price range',
@@ -87,8 +88,8 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
                                 array(
                                     'mapSkuToRowId',
                                     'getHeader',
+                                    'hasHeader',
                                     'getHeaders',
-                                    'hasHeaders',
                                     'getStoreViewCode',
                                     'getRow'
                                 )
@@ -102,11 +103,12 @@ class EeBundleOptionObserverTest extends \PHPUnit_Framework_TestCase
                     ->willReturn($row);
         $mockSubject->expects($this->any())
                     ->method('hasHeader')
-                    ->willReturnOnConsecutiveCalls(true);
+                    ->withConsecutive(array(ColumnKeys::STORE_VIEW_CODE), array(ColumnKeys::BUNDLE_VALUE_NAME))
+                    ->willReturnOnConsecutiveCalls(true, true);
         $mockSubject->expects($this->any())
                     ->method('getHeader')
-                    ->with(array(ColumnKeys::BUNDLE_VALUE_NAME))
-                    ->willReturnOnConsecutiveCalls($bundleValueName);
+                    ->withConsecutive(array(ColumnKeys::STORE_VIEW_CODE), array(ColumnKeys::BUNDLE_VALUE_NAME))
+                    ->willReturn($storeViewCode, $bundleValueName);
 
         // create a mock for the EE bundle option observer
         $mockObserver = $this->getMockBuilder('TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver')
