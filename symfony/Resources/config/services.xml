@@ -31,15 +31,21 @@
         <!--  
          ! ATTENTION: We're overriding the actions from the techdivision/import-product-bundle here 
          !-->
-        <service id="import_product_bundle.action.processor.product.bundle.option.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\ProductBundleOptionCreateProcessor">
+        <service id="import_product_bundle.action.processor.product.bundle.option.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
             <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Product\Bundle\Utils\SqlStatementKeys::CREATE_PRODUCT_BUNDLE_OPTION</argument>
+            </argument>
         </service>
-        <service id="import_product_bundle.action.processor.product.bundle.selection.create" class="TechDivision\Import\Product\Bundle\Ee\Actions\Processors\ProductBundleSelectionCreateProcessor">
+        <service id="import_product_bundle.action.processor.product.bundle.selection.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_product_bundle_ee.repository.sql.statement"/>
             <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Product\Bundle\Utils\SqlStatementKeys::CREATE_PRODUCT_BUNDLE_SELECTION</argument>
+            </argument>
         </service>
 
         <service id="import_product_bundle_ee.observer.bundle.option" class="TechDivision\Import\Product\Bundle\Ee\Observers\EeBundleOptionObserver">
