@@ -21,7 +21,7 @@
 namespace TechDivision\Import\Product\Bundle\Ee\Actions\Processors;
 
 use TechDivision\Import\Product\Bundle\Ee\Utils\SqlStatementKeys;
-use TechDivision\Import\Actions\Processors\AbstractCreateProcessor;
+use TechDivision\Import\Dbal\Collection\Actions\Processors\AbstractBaseProcessor;
 
 /**
  * The sequence product bundle option create processor implementation.
@@ -32,7 +32,7 @@ use TechDivision\Import\Actions\Processors\AbstractCreateProcessor;
  * @link      https://github.com/wagnert/import-product-bundle-ee
  * @link      http://www.appserver.io
  */
-class SequenceProductBundleOptionCreateProcessor extends AbstractCreateProcessor
+class SequenceProductBundleOptionCreateProcessor extends AbstractBaseProcessor
 {
 
     /**
