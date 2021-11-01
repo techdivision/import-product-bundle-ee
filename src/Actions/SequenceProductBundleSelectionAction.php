@@ -14,7 +14,7 @@
 
 namespace TechDivision\Import\Product\Bundle\Ee\Actions;
 
-use TechDivision\Import\Utils\EntityStatus;
+use TechDivision\Import\Dbal\Utils\EntityStatus;
 use TechDivision\Import\Dbal\Collection\Actions\AbstractAction;
 
 /**
