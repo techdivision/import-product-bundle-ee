@@ -79,7 +79,7 @@ class EeBundleSelectionUpdateObserver extends BundleSelectionUpdateObserver
         $attr = parent::prepareAttributes();
 
         // query whether or not, we found a new product bundle selection
-        if ($attr[EntityStatus::MEMBER_NAME] === EntityStatus::STATUS_CREATE) {
+        if (isset($attr[EntityStatus::MEMBER_NAME]) && $attr[EntityStatus::MEMBER_NAME] === EntityStatus::STATUS_CREATE) {
             $attr[MemberNames::SELECTION_ID] = $this->nextIdentifier();
         }
 
