@@ -7,6 +7,7 @@
 ## Features
 
 * Refactoring deprecated classes. see https://github.com/techdivision/import-cli-simple/blob/master/UPGRADE-4.0.0.md
+* PAC-541: Update composer with php Version ">=^7.3"
 
 # Version 26.0.0
 
