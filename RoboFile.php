@@ -128,13 +128,18 @@ class RoboFile extends \Robo\Tasks
             'Observers/EeBundleOptionObserver'
         );
 
+        // prepare the patterns for the files that has to be ignored
+        $ignore = array(
+            $this->properties['vendor.dir'].'/techdivision/import-product-bundle-ee/src/Observers/EeBundleOptionObserver.php',
+        );
+
         // run the copy past detector
         return $this->_exec(
             sprintf(
-                '%s/bin/phpcpd --exclude %s %s --log-pmd %s/reports/pmd-cpd.xml',
+                '%s/bin/phpcpd %s --exclude %s --log-pmd %s/reports/pmd-cpd.xml',
                 $this->properties['vendor.dir'],
-                implode(',', $ignore),
                 $this->properties['src.dir'],
+                implode(' --exclude ', $ignore),
                 $this->properties['target.dir']
             )
         );
