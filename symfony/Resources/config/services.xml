@@ -28,8 +28,8 @@
             <argument type="service" id="import_product_bundle_ee.action.processor.sequence.product.bundle.selection.create"/>
         </service>
 
-        <!--  
-         ! ATTENTION: We're overriding the actions from the techdivision/import-product-bundle here 
+        <!--
+         ! ATTENTION: We're overriding the actions from the techdivision/import-product-bundle here
          !-->
         <service id="import_product_bundle.action.processor.product.bundle.option.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
             <argument type="service" id="connection"/>
@@ -88,6 +88,10 @@
             <argument type="service" id="import_product_ee.processor.product.bunch"/>
             <argument type="string">%import_product_bundle.param.sku.column.name%</argument>
         </service>
+        <service id="import_product_bundle_ee.observer.parent.sku.row.id.mapping" class="TechDivision\Import\Product\Ee\Observers\GenericSkuRowIdMappingObserver">
+            <argument type="service" id="import_product_ee.processor.product.bunch"/>
+            <argument type="string">%import_product_bundle.param.parent.sku.column.name%</argument>
+        </service>
 
         <!--
          | The DI configuration for the composite observers of the replace operation.
@@ -114,6 +118,9 @@
          | The DI configuration for the composite observers of the add-update operation.
          |-->
         <service id="import_product_bundle_ee.observer.composite.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_bundle_ee.observer.parent.sku.row.id.mapping" type="service"/>
+            </call>
             <call method="addObserver">
                 <argument id="import_product_bundle_ee.observer.sku.row.id.mapping" type="service"/>
             </call>
