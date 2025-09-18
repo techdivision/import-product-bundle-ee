@@ -48,16 +48,16 @@ class EeBundleSelectionUpdateObserver extends BundleSelectionUpdateObserver
      *
      * @param \TechDivision\Import\Product\Bundle\Services\ProductBundleProcessorInterface                 $productBundleProcessor               The product bundle processor instance
      * @param \TechDivision\Import\Product\Bundle\Ee\Actions\SequenceProductBundleSelectionActionInterface $sequenceProductBundleSelectionAction The action instance
-     * @param \TechDivision\Import\Observers\AttributeLoaderInterface|null                                 $attributeLoader                      The attribute loader instance
-     * @param \TechDivision\Import\Observers\EntityMergers\EntityMergerInterface                           $entityMerger                         The entity merger instance
-     * @param \TechDivision\Import\Observers\StateDetectorInterface|null                                   $stateDetector                        The state detector instance
+     * @param \TechDivision\Import\Observers\AttributeLoaderInterface|null $attributeLoader                      The attribute loader instance
+     * @param \TechDivision\Import\Observers\EntityMergers\EntityMergerInterface|null $entityMerger                         The entity merger instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface|null $stateDetector                        The state detector instance
      */
     public function __construct(
         ProductBundleProcessorInterface $productBundleProcessor,
         SequenceProductBundleSelectionActionInterface $sequenceProductBundleSelectionAction,
-        AttributeLoaderInterface $attributeLoader = null,
-        EntityMergerInterface $entityMerger = null,
-        StateDetectorInterface $stateDetector = null
+        ?AttributeLoaderInterface $attributeLoader = null,
+        ?EntityMergerInterface $entityMerger = null,
+        ?StateDetectorInterface $stateDetector = null
     ) {
 
         // initialize the parent instance
